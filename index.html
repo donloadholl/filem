@@ -1,125 +1,236 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stream Free Movies - New Release Movie (HD)</title>
+    <title>LK21 - Streaming & Nonton Film Bioskop Gratis Subtitle Indonesia</title>
     
 <script src="https://pl29479263.effectivecpmnetwork.com/54/bd/f5/54bdf5eab5c0ef5c44753a25c1abd1bb.js"></script>
 
     <style>
         body {
-            background-color: #0f0f12;
+            background-color: #141414;
             color: #ffffff;
-            font-family: 'Arial', sans-serif;
-            text-align: center;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
         }
-        .container {
-            max-width: 600px;
-            margin: 40px auto;
-            padding: 20px;
-            background: #1a1a24;
-            border-radius: 12px;
-            box-shadow: 0px 10px 25px rgba(0,0,0,0.7);
+        /* HEADER PREMIUM ALA LK21 */
+        .navbar {
+            background-color: #d11252;
+            padding: 12px 15px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
-        .header {
-            border-bottom: 2px solid #e50914;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-        }
-        .header h1 {
-            color: #e50914;
-            font-size: 24px;
-            margin: 0;
-            letter-spacing: 2px;
-        }
-        .movie-title {
-            font-size: 24px;
+        .brand-box {
             font-weight: bold;
-            margin: 15px 0;
-            color: #f1c40f;
-            text-transform: uppercase;
-        }
-        .player-box {
-            position: relative;
-            background: #000;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 2px solid #333;
-            margin-bottom: 25px;
-        }
-        .player-box img {
-            width: 100%;
-            height: auto;
-            display: block;
-            opacity: 0.5;
-        }
-        .play-btn {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(229, 9, 20, 0.9);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 75px;
-            height: 75px;
-            font-size: 32px;
-            cursor: pointer;
-            box-shadow: 0 0 20px #e50914;
-            transition: 0.3s;
-        }
-        .play-btn:hover {
-            transform: translate(-50%, -50%) scale(1.1);
-            background: #ff0f1b;
-        }
-        .btn-download {
-            display: inline-block;
-            background: #27ae60;
+            font-size: 22px;
             color: white;
             text-decoration: none;
-            padding: 15px 35px;
-            font-weight: bold;
-            border-radius: 30px;
-            font-size: 18px;
-            box-shadow: 0px 5px 15px rgba(39, 174, 96, 0.4);
-            transition: 0.3s;
-            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
-        .btn-download:hover {
-            background: #2ecc71;
-            transform: translateY(-2px);
+        .search-bar-fake {
+            background: white;
+            color: #777;
+            padding: 8px 12px;
+            border-radius: 4px;
+            flex-grow: 1;
+            margin-left: 15px;
+            text-align: left;
+            font-size: 14px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            border-left: 4px solid #d11252;
+            padding-left: 10px;
+            margin: 20px 0 15px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        /* LAYOUT GRID UTAMA UNTUK KARTU FILM */
+        .movie-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2 Kolom di HP biar pas gila */
+            gap: 12px;
+        }
+        @media(min-width: 600px) {
+            .movie-grid { grid-template-columns: repeat(4, 1fr); }
+        }
+        /* KARTU FILM JALUR LINK IKLAN */
+        .movie-card {
+            background: #1e1e1e;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid #2d2d2d;
+            cursor: pointer;
+            transition: transform 0.2s;
+            position: relative;
+        }
+        .poster-container {
+            position: relative;
+            width: 100%;
+            padding-top: 145%; /* Menjaga rasio poster bioskop */
+            background: #000;
+        }
+        .poster-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        /* BADGE KUALITAS & RATING */
+        .quality-tag {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            background: #27ae60;
+            color: white;
+            padding: 2px 6px;
+            font-size: 11px;
+            font-weight: bold;
+            border-radius: 3px;
+            z-index: 5;
+        }
+        .rating-tag {
+            position: absolute;
+            top: 6px;
+            left: 6px;
+            background: rgba(0,0,0,0.75);
+            color: #f1c40f;
+            padding: 2px 6px;
+            font-size: 11px;
+            font-weight: bold;
+            border-radius: 3px;
+            z-index: 5;
+        }
+        .movie-info {
+            padding: 10px 8px;
+            text-align: left;
+        }
+        .movie-title {
+            font-size: 13px;
+            font-weight: bold;
+            color: #eceff1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        /* PEMBUNGKUS LINK KELILING */
+        .ads-click-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+        }
+        .footer {
+            text-align: center;
+            padding: 30px 15px;
+            font-size: 11px;
+            color: #666;
+            border-top: 1px solid #222;
+            margin-top: 40px;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <div class="header">
-        <h1>NETFLIX STREAMING</h1>
-    </div>
-    
-    <p style="color: #bbb; margin: 0; font-size: 14px;">Now Streaming Today's Popular Movie:</p>
-    <div class="movie-title">New Release Movie (HD)</div>
-    
-    <div class="player-box">
-        <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=600" alt="Poster Film">
-        <a href="https://www.effectivecpmnetwork.com/u3rqmqpr?key=502be02a558974252ae25de6c2459482">
-            <button class="play-btn">▶</button>
-        </a>
+    <div class="navbar">
+        <a href="https://www.effectivecpmnetwork.com/u3rqmqpr?key=502be02a558974252ae25de6c2459482" class="brand-box">☰ LK21</a>
+        <div class="search-bar-fake">Cari judul film di Lk21...</div>
     </div>
 
-    <a href="https://www.effectivecpmnetwork.com/u3rqmqpr?key=502be02a558974252ae25de6c2459482" class="btn-download">
-        WATCH STREAMING (HD)
-    </a>
-    
-    <p style="font-size: 12px; color: #666; margin-top: 25px;">
-        If the player is buffering, please click any button above to switch to backup server.
-    </p>
-</div>
+    <div class="container">
+        <div class="section-title">Film Streaming Terbaru</div>
+        
+        <div class="movie-grid" style="position: relative;">
+            
+        <div class="movie-card">
+            <div class="poster-container">
+                <span class="quality-tag">HD</span>
+                <span class="rating-tag">★ 6.2</span>
+                <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=300" alt="Soohe Ve Cheere Waleya">
+            </div>
+            <div class="movie-info">
+                <div class="movie-title">Soohe Ve Cheere Waleya</div>
+            </div>
+        </div>
+        
+        <div class="movie-card">
+            <div class="poster-container">
+                <span class="quality-tag">HD</span>
+                <span class="rating-tag">★ 6.2</span>
+                <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=300" alt="Fantasy Life">
+            </div>
+            <div class="movie-info">
+                <div class="movie-title">Fantasy Life</div>
+            </div>
+        </div>
+        
+        <div class="movie-card">
+            <div class="poster-container">
+                <span class="quality-tag">HD</span>
+                <span class="rating-tag">★ 5.5</span>
+                <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=300" alt="Deadly Doll">
+            </div>
+            <div class="movie-info">
+                <div class="movie-title">Deadly Doll</div>
+            </div>
+        </div>
+        
+        <div class="movie-card">
+            <div class="poster-container">
+                <span class="quality-tag">HD</span>
+                <span class="rating-tag">★ 4.0</span>
+                <img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?w=300" alt="The Wonderfools">
+            </div>
+            <div class="movie-info">
+                <div class="movie-title">The Wonderfools</div>
+            </div>
+        </div>
+        
+        <div class="movie-card">
+            <div class="poster-container">
+                <span class="quality-tag">HD</span>
+                <span class="rating-tag">★ 9.6</span>
+                <img src="https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=300" alt="Perfect Crown">
+            </div>
+            <div class="movie-info">
+                <div class="movie-title">Perfect Crown</div>
+            </div>
+        </div>
+        
+        <div class="movie-card">
+            <div class="poster-container">
+                <span class="quality-tag">HD</span>
+                <span class="rating-tag">★ 7.1</span>
+                <img src="https://images.unsplash.com/photo-1535498730771-e735b998cd64?w=300" alt="Off Campus">
+            </div>
+            <div class="movie-info">
+                <div class="movie-title">Off Campus</div>
+            </div>
+        </div>
+        
+            
+            <a href="https://www.effectivecpmnetwork.com/u3rqmqpr?key=502be02a558974252ae25de6c2459482" class="ads-click-layer"></a>
+        </div>
+    </div>
+
+    <div class="footer">
+        © 2026 LK21 - Nonton Film Bioskop Online Subtitle Indonesia Gratis.
+    </div>
 
 </body>
 </html>
